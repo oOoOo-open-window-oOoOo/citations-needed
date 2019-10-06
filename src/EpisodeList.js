@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import TextTruncate from 'react-text-truncate'
+import {dateToString, stringToDate} from './helpers/date' //imports date helper methods
+import { DateToggle } from './DateToggle'
 
 const Preview = styled.li`
   display: flex;
@@ -89,9 +91,9 @@ export const EpisodePreview = ({episode}) => {
           <h3>{episode.title}</h3>
         </div>
         {episode.contentWarning &&
-          <div className="content-warning">{episode.contentWarning}</div>
+          <div className="content-warning">content warning: {episode.contentWarning}</div>
         }
-        <div className="date-runtime"><span>{episode.datePosted}</span> | <span>{episode.runtime}</span></div>
+        <div className="date-runtime"><span>{stringToDate(episode.datePosted).toLocaleDateString()}</span> | <span>{episode.runtime}</span></div>
       </div>
       <div className="description">
         <TextTruncate
@@ -106,7 +108,20 @@ export const EpisodePreview = ({episode}) => {
   )
 }
 
-export const EpisodeList = styled.ol`
+const List = styled.ol`
   margin: 0;
   padding: 0;
 `
+
+export const EpisodeList = ({episodes}) => {
+  const [sortDescending, setSortDescending] = useState(true)
+  const sortedEpisodes = sortDescending ? episodes : [...episodes].reverse()
+  return (
+    <List>
+      <DateToggle sortDescending={sortDescending} onClick={() => setSortDescending(!sortDescending)} />
+      {sortedEpisodes.map((episode, index) => (
+        <EpisodePreview episode={episode} key={index} />
+      ))}
+    </List>
+  )
+}
