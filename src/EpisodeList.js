@@ -26,6 +26,7 @@ const Preview = styled.li`
   }
   & .title {
     font-size: 20px;
+    cursor: pointer;
   & h3 {
     margin: var(--margin) 0 8px 0;
   }
@@ -79,8 +80,7 @@ const Preview = styled.li`
     & .description {
       font-size: 12px;
     }
-  }
-`
+  }`
 
 export const EpisodePreview = ({episode}) => {
   return (
