@@ -6,7 +6,7 @@ export default {
   },
   about: {
     title: 'Citations Needed',
-    logo: './assets/logo.svg',
+    logo: '../assets/logo.png',
     coverImage: './assets/cover.png',
     shortDescription: 'A podcast about the media, power, and the history of bullshit',
     longDescription: `
@@ -18,13 +18,17 @@ export default {
         url: 'https://facebook.com/citationsneeded'
       }
     ],
-    donationLink: 'https://www.patreon.com/citationsneededpodcast'
+    donationLink: {
+      name: 'Support us on Patreon',
+      url: 'https://www.patreon.com/citationsneededpodcast'
+    }
   },
   episodes: [
     { // EPISODE
       id: 0,
       soundcloudId: 1234,
       runtime: "1 hour, 7 minutes",
+      duration: 360000,
       datePosted: "2019-12-21T08:00:00.000Z",
       title: 'Episode 84: How Claims of “Sowing Discord” Silence Criticism of Power',
       coverImage: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
@@ -56,14 +60,14 @@ export default {
             - some more text
             - a list
           `,
-          startTime: 123012
+          startTime: 500023
         },
         { // WEB CLIPPING
           id: 321,
           type: 'embed',
           html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/p78q5T2fkcY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
           caption: `Freshman Congresswoman Alexandria Ocasio-Cortez taking to Twitter to criticize House Speaker Nancy Pelosi`,
-          startTime: 122459
+          startTime: 800234
         }
       ],
       credits: `
@@ -77,6 +81,7 @@ export default {
       id: 0,
       soundcloudId: 1234,
       runtime: "1 hour, 7 minutes",
+      duration: 360000,
       datePosted: "2019-12-18T08:00:00.000Z",
       title: 'Episode 83: Blah blah',
       coverImage: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
@@ -129,6 +134,7 @@ export default {
       id: 0,
       soundcloudId: 1234,
       runtime: "1 hour, 7 minutes",
+      duration: 360000,
       datePosted: "2019-12-11T08:00:00.000Z",
       title: 'Episode 82: Blah blah',
       coverImage: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
