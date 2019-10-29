@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import {dateToString, stringToDate} from './helpers/date' //imports date helper methods
+import {stringToDate} from './helpers/date' //imports date helper methods
 import TextTruncate from 'react-text-truncate'
-import { DateToggle } from './DateToggle'
 
 const Viewer = styled.div`
   display: flex;
@@ -92,20 +91,18 @@ const Viewer = styled.div`
   }
 `
 
-export const EpisodeViewer = ({episodes}) => {
-  const [getActiveEpisode, setActiveEpisode] = useState(true)
-  const activeEpisode =episodes[0];
+export const EpisodeViewer = ({episode}) => {
   return (
     <Viewer>
-      <img className="cover-image" src={activeEpisode.coverImage} />
+      <img className="cover-image" alt={`Episode artwork`} src={episode.coverImage} />
       <div className="episodeInfo">
         <div className="metadata">
           <div className="title">
-            <h3>{activeEpisode.title}</h3>
+            <h3>{episode.title}</h3>
           </div>
-          <div className="date-runtime"><span>{stringToDate(activeEpisode.datePosted).toLocaleDateString()}</span> • <span>{activeEpisode.runtime}</span></div>
-          {activeEpisode.contentWarning &&
-            <div className="content-warning">content warning: {activeEpisode.contentWarning}</div>
+          <div className="date-runtime"><span>{stringToDate(episode.datePosted).toLocaleDateString()}</span> • <span>{episode.runtime}</span></div>
+          {episode.contentWarning &&
+            <div className="content-warning">content warning: {episode.contentWarning}</div>
           }
         </div>
         <div className="description">
@@ -113,8 +110,8 @@ export const EpisodeViewer = ({episodes}) => {
             line={9}
             element="span"
             truncateText="…"
-            text={activeEpisode.description}
-            textTruncateChild={<a href="#"></a>}
+            text={episode.description}
+            textTruncateChild={<span></span>}
           />
         </div>
       </div>
