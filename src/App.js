@@ -8,25 +8,26 @@ import './App.css'
 
 content.episodes = [...content.episodes]
 
-function App(props) {
-  const store = props.store
-
+function App({ store }) {
   const [episodes, setEpisodes] = useState([])
-
-  if (episodes.length < 1) {
-    store.collection('episodes').get().then((result) => {
-      let _episodes = []
-      result.forEach((ep) => _episodes.push(ep.data()))
-      setEpisodes(_episodes)
-    })
-  }
-  const onEpisodeSort = () => {
-    // https://firebase.google.com/docs/firestore/query-data/order-limit-data?authuser=1#order_and_limit_data
-    console.log('TODO apply db sort here')
-  }
-
+  // TODO pass in a blank episode while loading
   const [activeEpisode, setActiveEpisode] = useState(content.episodes[0]);
 
+  if (episodes.length < 1) {
+    store.getEpisodes({}).then((data) => {
+      setEpisodes(data)
+      setActiveEpisode(data[0])
+    })
+  }
+  const onEpisodeSort = (sortDescending) => {
+    store.getEpisodes({
+      orderBy: 'datePosted',
+      order: sortDescending ? 'desc' : 'asc',
+    }).then((data) => {
+      setEpisodes(data)
+      setActiveEpisode(data[0])
+    })
+  }
   const onEpisodeClick = episode => setActiveEpisode(episode)
 
   const [player, setPlayer] = useState({
@@ -34,6 +35,8 @@ function App(props) {
     progress: 80000
   })
 
+  // TODO loading state
+  // TODO error boundary for EpisodeViewer
   return (
     <div className="App">
       <DesktopPlayBar 

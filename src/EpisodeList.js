@@ -115,18 +115,16 @@ const List = styled.ol`
 
 export const EpisodeList = ({episodes, onEpisodeClick, onEpisodeSort}) => {
   const [sortDescending, setSortDescending] = useState(true)
-  const sortedEpisodes = sortDescending ? episodes : [...episodes].reverse()
 
-  // TODO return sorted episodes from data store
   const onSortClick = () => {
     setSortDescending(!sortDescending)
-    onEpisodeSort()
+    onEpisodeSort(sortDescending)
   }
 
   return (
     <List>
       <DateToggle sortDescending={sortDescending} onClick={onSortClick} />
-      {sortedEpisodes.map((episode, index) => (
+      {episodes.map((episode, index) => (
         <EpisodePreview onClick={onEpisodeClick} episode={episode} key={index} />
       ))}
     </List>
