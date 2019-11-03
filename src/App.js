@@ -25,7 +25,6 @@ function App({ store }) {
       order: sortDescending ? 'desc' : 'asc',
     }).then((data) => {
       setEpisodes(data)
-      setActiveEpisode(data[0])
     })
   }
   const onEpisodeClick = episode => setActiveEpisode(episode)
