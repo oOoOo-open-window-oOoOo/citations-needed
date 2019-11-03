@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import TextTruncate from 'react-text-truncate'
-import {stringToDate} from './helpers/date' //imports date helper methods
+import {toDate} from './helpers/date' //imports date helper methods
 import { DateToggle } from './DateToggle'
 
 const Preview = styled.li`
@@ -93,7 +93,7 @@ export const EpisodePreview = ({episode, onClick}) => {
         {episode.contentWarning &&
           <div className="content-warning">content warning: {episode.contentWarning}</div>
         }
-        <div className="date-runtime"><span>{stringToDate(episode.datePosted).toLocaleDateString()}</span> | <span>{episode.runtime}</span></div>
+        <div className="date-runtime"><span>{toDate(episode.datePosted).toLocaleDateString()}</span> | <span>{episode.runtime}</span></div>
       </div>
       <div className="description">
         <TextTruncate
@@ -113,13 +113,19 @@ const List = styled.ol`
   padding: 0;
 `
 
-export const EpisodeList = ({episodes, onEpisodeClick}) => {
+export const EpisodeList = ({episodes, onEpisodeClick, onEpisodeSort}) => {
   const [sortDescending, setSortDescending] = useState(true)
   const sortedEpisodes = sortDescending ? episodes : [...episodes].reverse()
 
+  // TODO return sorted episodes from data store
+  const onSortClick = () => {
+    setSortDescending(!sortDescending)
+    onEpisodeSort()
+  }
+
   return (
     <List>
-      <DateToggle sortDescending={sortDescending} onClick={() => setSortDescending(!sortDescending)} />
+      <DateToggle sortDescending={sortDescending} onClick={onSortClick} />
       {sortedEpisodes.map((episode, index) => (
         <EpisodePreview onClick={onEpisodeClick} episode={episode} key={index} />
       ))}

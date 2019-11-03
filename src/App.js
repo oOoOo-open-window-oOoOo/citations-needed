@@ -8,7 +8,23 @@ import './App.css'
 
 content.episodes = [...content.episodes]
 
-function App() {
+function App(props) {
+  const store = props.store
+
+  const [episodes, setEpisodes] = useState([])
+
+  if (episodes.length < 1) {
+    store.collection('episodes').get().then((result) => {
+      let _episodes = []
+      result.forEach((ep) => _episodes.push(ep.data()))
+      setEpisodes(_episodes)
+    })
+  }
+  const onEpisodeSort = () => {
+    // https://firebase.google.com/docs/firestore/query-data/order-limit-data?authuser=1#order_and_limit_data
+    console.log('TODO apply db sort here')
+  }
+
   const [activeEpisode, setActiveEpisode] = useState(content.episodes[0]);
 
   const onEpisodeClick = episode => setActiveEpisode(episode)
@@ -30,7 +46,8 @@ function App() {
       <EpisodeViewer episode={activeEpisode}></EpisodeViewer>
       <EpisodeList
         onEpisodeClick={onEpisodeClick}
-        episodes={content.episodes}
+        onEpisodeSort={onEpisodeSort}
+        episodes={episodes}
       />
     </div>
   )
