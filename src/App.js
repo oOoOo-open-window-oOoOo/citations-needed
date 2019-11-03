@@ -8,9 +8,25 @@ import './App.css'
 
 content.episodes = [...content.episodes]
 
-function App() {
+function App({ store }) {
+  const [episodes, setEpisodes] = useState([])
+  // TODO pass in a blank episode while loading
   const [activeEpisode, setActiveEpisode] = useState(content.episodes[0]);
 
+  if (episodes.length < 1) {
+    store.getEpisodes({}).then((data) => {
+      setEpisodes(data)
+      setActiveEpisode(data[0])
+    })
+  }
+  const onEpisodeSort = (sortDescending) => {
+    store.getEpisodes({
+      orderBy: 'datePosted',
+      order: sortDescending ? 'desc' : 'asc',
+    }).then((data) => {
+      setEpisodes(data)
+    })
+  }
   const onEpisodeClick = episode => setActiveEpisode(episode)
 
   const [player, setPlayer] = useState({
@@ -18,6 +34,8 @@ function App() {
     progress: 80000
   })
 
+  // TODO loading state
+  // TODO error boundary for EpisodeViewer
   return (
     <div className="App">
       <DesktopPlayBar 
@@ -30,7 +48,8 @@ function App() {
       <EpisodeViewer episode={activeEpisode}></EpisodeViewer>
       <EpisodeList
         onEpisodeClick={onEpisodeClick}
-        episodes={content.episodes}
+        onEpisodeSort={onEpisodeSort}
+        episodes={episodes}
       />
     </div>
   )
