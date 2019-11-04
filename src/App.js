@@ -13,11 +13,6 @@ function App() {
 
   const onEpisodeClick = episode => setActiveEpisode(episode)
 
-  const [player, setPlayer] = useState({
-    isPlaying: false,
-    progress: 80000
-  })
-
   return (
     <div className="App">
       <DesktopPlayBar 
@@ -25,7 +20,6 @@ function App() {
         logoSrc={content.about.logo} 
         title={content.about.title} 
         activeEpisode={activeEpisode}
-        player={player}
       />
       <EpisodeViewer episode={activeEpisode}></EpisodeViewer>
       <EpisodeList
