@@ -43,7 +43,7 @@ const Timeline = styled.div`
   margin-top: 10px;
 `
 
-const TimelineArea = ({episode, player}) => {
+const TimelineArea = ({episode, currentTime}) => {
   return (
     <Outer>
       <h2>{episode.title}</h2>
@@ -52,15 +52,15 @@ const TimelineArea = ({episode, player}) => {
         <Bar 
           style={{
             backgroundColor: 'var(--citations-yellow)',
-            width: `${(player.progress / episode.duration) * 100}%`
+            width: `${(currentTime / episode.duration) * 100}%`
           }} 
         />
         {episode.content.map((content, index) => {
           const xPosition = (content.startTime / episode.duration) * 100
-          return (<Gap key={index} style={{left: `${xPosition}px`}} />)
+          return (<Gap key={index} style={{left: `${xPosition}%`}} />)
         })}
         <Playhead
-          style={{left: `${(player.progress / episode.duration) * 100}%`}}
+          style={{left: `${(currentTime / episode.duration) * 100}%`}}
         />
       </Timeline>
     </Outer>
