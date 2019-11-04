@@ -28,11 +28,12 @@ export default {
       id: 0,
       soundcloudId: 1234,
       runtime: "1 hour, 7 minutes",
-      duration: 360000,
+      duration: 4025.4094,
       datePosted: "2019-12-21T08:00:00.000Z",
       title: 'Episode 84: How Claims of “Sowing Discord” Silence Criticism of Power',
       coverImage: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
       contentWarning: 'violence',
+      audioLink: 'https://traffic.libsyn.com/secure/citationsneeded/CN92_20191030_automation_Weisbrot_Frase.mp3?dest-id=542191',
       description: `
         Freshman Congresswoman Alexandria Ocasio-Cortez taking to Twitter to criticize House Speaker Nancy Pelosi, we are told, “plays into the hands of Trump.” Russians are using Black Lives Matter and anti-fracking activists to “sow discord,” insists CNN. We must “be united” rather than “divided.”
 
@@ -49,7 +50,7 @@ export default {
           type: 'image',
           url: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
           caption: `Freshman Congresswoman Alexandria Ocasio-Cortez taking to Twitter to criticize House Speaker Nancy Pelosi`,
-          startTime: 123012
+          startTime: 1041,
         },
         { // TEXT
           id: 321,
@@ -60,14 +61,14 @@ export default {
             - some more text
             - a list
           `,
-          startTime: 500023
+          startTime: 3023
         },
         { // WEB CLIPPING
           id: 321,
           type: 'embed',
           html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/p78q5T2fkcY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
           caption: `Freshman Congresswoman Alexandria Ocasio-Cortez taking to Twitter to criticize House Speaker Nancy Pelosi`,
-          startTime: 800234
+          startTime: 3534
         }
       ],
       credits: `
@@ -81,11 +82,12 @@ export default {
       id: 0,
       soundcloudId: 1234,
       runtime: "1 hour, 7 minutes",
-      duration: 360000,
+      duration: 4025.4094,
       datePosted: "2019-12-18T08:00:00.000Z",
       title: 'Episode 83: The Unchecked Conservative Ideology of US Media\'s \'Fact-Check\' Verticals',
       coverImage: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
       contentWarning: 'violence',
+      audioLink: 'https://traffic.libsyn.com/secure/citationsneeded/CN92_20191030_automation_Weisbrot_Frase.mp3?dest-id=542191',
       description: `
         "Three Pinocchios!" rates The Washington Post. "Pants On Fire!" declares PolitiFact. “True, but misleading,” assess The New York Times.
 
@@ -101,7 +103,7 @@ export default {
           type: 'image',
           url: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
           caption: `Freshman Congresswoman Alexandria Ocasio-Cortez taking to Twitter to criticize House Speaker Nancy Pelosi`,
-          startTime: 123012
+          startTime: 1212
         },
         { // TEXT
           id: 321,
@@ -133,10 +135,11 @@ export default {
       id: 0,
       soundcloudId: 1234,
       runtime: "1 hour, 7 minutes",
-      duration: 360000,
+      duration: 4025.4094,
       datePosted: "2019-12-11T08:00:00.000Z",
       title: 'Episode 81: How US Media Pits Labor and Climate Activists Against One Other',
       coverImage: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
+      audioLink: 'https://traffic.libsyn.com/secure/citationsneeded/CN92_20191030_automation_Weisbrot_Frase.mp3?dest-id=542191',
       contentWarning: 'violence',
       description: `
         "A growing, and likely irreparable, rift between elite progressive environmentalists," Forbes tells us. "Environmentalists need to reconnect with blue-collar America," The Hill explains. "Labor anger over Green New Deal greets 2020 contenders in California," Politico reports. "AOC's Green New Deal could have Dems facing blue-collar backlash at polls, some say," a Fox News headline reads.
@@ -186,10 +189,11 @@ export default {
       id: 0,
       soundcloudId: 1234,
       runtime: "1 hour, 7 minutes",
-      duration: 360000,
+      duration: 4025.4094,
       datePosted: "2019-12-11T08:00:00.000Z",
       title: 'Episode 82: \'Western Civilization\' and White Supremacy: The Right-Wing Co-option of Antiquity',
       coverImage: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
+      audioLink: 'https://traffic.libsyn.com/secure/citationsneeded/CN92_20191030_automation_Weisbrot_Frase.mp3?dest-id=542191',
       contentWarning: 'violence',
       description: `
         The term "Western civilization" has long been a staple of the American Right, but with the recent resurgence of white nationalism, it is having something of a comeback. Glenn Beck and Bill O'Reilly are hosting a two-week Mediterranean "cruise thru history" to "explore the roots of Western civilization." The Intellectual Dark Web's Jordan Peterson tells us “The West is Right,” while The Daily Caller and Fox News are busy “celebrating the West." Neo-Nazi Matthew Heimbach hails “Youth for Western Civilization." Both the traditional and so-called alt-right ground their worldviews in a fictional moral arc of "The West” that bares little resemblance to reality.
@@ -238,11 +242,12 @@ export default {
       id: 0,
       soundcloudId: 1234,
       runtime: "1 hour, 7 minutes",
-      duration: 360000,
+      duration: 4025.4094,
       datePosted: "2019-12-11T08:00:00.000Z",
       title: 'Episode 81: Animal Rights as Media and Pop Culture Punchline',
       coverImage: 'https://cdn1.player.fm/images/14302089/series/sPFCeeGeQ1hLU73v/512.png',
       contentWarning: 'violence',
+      audioLink: 'https://traffic.libsyn.com/secure/citationsneeded/CN92_20191030_automation_Weisbrot_Frase.mp3?dest-id=542191',
       description: `
         In countless pop culture and media depictions, animal rights advocates and vegetarians in general, are viewed as effete weirdos, dirty hippies and humorless busybodies. Pop culture staples from "South Park" to "How I Met Your Mother" to "Six Feet Under" have used animal rights and those concerned for animal welfare as a go-to, faux populist target.
 
