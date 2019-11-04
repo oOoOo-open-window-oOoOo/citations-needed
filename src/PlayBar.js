@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback, useRef, useState} from 'react'
 import styled from 'styled-components'
 import TimelineArea from './TimelineArea'
 
@@ -61,7 +61,16 @@ const Controls = styled.div`
 `
 
 export const DesktopPlayBar = ({title, logoSrc, donationLink, activeEpisode, player}) => {
-  console.log(player.isPlaying, player.progress, !player.isPlaying && player.progess === 0 )
+  const playerRef = useRef(null)
+  const [isPlaying, setIsPlaying] = useState(false) //state variables for isPlaying, initialized to false
+  const [currentTime, setCurrentTime] = useState(0) //state variables for currentTime, initialized to 0
+
+  const onPlayButtonClick = useCallback(() => {
+    if (!playerRef.current) return // checks to make sure playerRef.current isn't empty
+    /* toggles audio on / off, using ref defined in the <audio> tag below | requires array of variable dependencies */
+    isPlaying ? playerRef.current.pause() : playerRef.current.play()
+  }, [isPlaying])
+
   return (
     <Bar>
       <Logo src={logoSrc} />
@@ -74,10 +83,19 @@ export const DesktopPlayBar = ({title, logoSrc, donationLink, activeEpisode, pla
           {/* to replace with component later */}
         </nav>
         <Player>
-          <TimelineArea episode = {activeEpisode} player={player}/>
+          {/* audio tag loads in audio file, creates a ref so that it can be accessed elsewhere */}
+          <audio 
+            src={activeEpisode.audioLink} 
+            ref={playerRef} 
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            onError={() => setIsPlaying(false)}
+            onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
+          />
+          <TimelineArea episode = {activeEpisode} currentTime={currentTime}/>
           <Controls>
-            {!player.isPlaying && player.progress === 0 ? (
-              <button>
+            {!isPlaying && currentTime === 0 ? (
+              <button onClick={onPlayButtonClick}>
                 Start Episode
               </button>
             ) : (
@@ -85,8 +103,8 @@ export const DesktopPlayBar = ({title, logoSrc, donationLink, activeEpisode, pla
                 <button>
                   Prev
                 </button>
-                <button>
-                  {!player.isPlaying ? "Pause" : "Play"}
+                <button onClick={onPlayButtonClick}>
+                  {isPlaying ? "Pause" : "Play"}
                 </button>
                 <button>
                   Next
