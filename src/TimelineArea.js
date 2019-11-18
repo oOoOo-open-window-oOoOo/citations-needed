@@ -82,13 +82,14 @@ const TimelineArea = ({episode, currentTime, onSeek}) => {
       <h2>{episode.title}</h2>
       <Timeline
         ref={timeline}
+        onClick={seek}
       >
         <Bar />
         <Bar 
           style={{
             backgroundColor: 'var(--citations-yellow)',
             transform: `scaleX(${currentTime / episode.duration})`
-          }} 
+          }}
         />
         {episode.content.map((content, index) => {
           return (
