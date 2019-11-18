@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useCallback, useRef } from 'react'
 import styled from 'styled-components'
+import { useEvent, useMount } from 'react-use'
 
 const Outer = styled.div`
   width: 100%;
@@ -25,6 +26,7 @@ const Bar = styled.div`
   background: white;
   height: 8px;
   top: 9px;
+  transform-origin: left center;
 `
 
 const Playhead = styled.button`
@@ -43,24 +45,67 @@ const Timeline = styled.div`
   margin-top: 10px;
 `
 
-const TimelineArea = ({episode, currentTime}) => {
+const TimelineArea = ({episode, currentTime, onSeek}) => {
+  const [isSeeking, setIsSeeking] = useState(false)
+
+  const timeline = useRef(null)
+  const playhead = useRef(null)
+  const [timelineRect, setTimelineRect] = useState({width: 0, height: 0, left: 0, top: 0})
+  useMount(() => {
+    setTimelineRect(timeline.current.getBoundingClientRect())
+  })
+  useEvent('resize', () => {
+    setTimelineRect(timeline.current.getBoundingClientRect())
+  })
+
+  const seek = useCallback(e => {
+    const {width, left} = timelineRect
+    const MOUSE_OFFSET = 8
+    const playheadLeft = e.clientX - left - MOUSE_OFFSET
+    const ratioLeft = Math.max(0, Math.min(playheadLeft / width, 1))
+    const time = episode.duration * ratioLeft
+    onSeek(time)
+  }, [onSeek, episode.duration, timelineRect])
+  useEvent('mousemove', isSeeking ? seek : undefined)
+
+  const onSeekStart = useCallback(() => {
+    setIsSeeking(true)
+  }, [])
+
+  const onSeekEnd = useCallback(() => {
+    setIsSeeking(false)
+  }, [])
+  useEvent('mouseup', isSeeking ? onSeekEnd : undefined)
+
   return (
     <Outer>
       <h2>{episode.title}</h2>
-      <Timeline>
+      <Timeline
+        ref={timeline}
+      >
         <Bar />
         <Bar 
           style={{
             backgroundColor: 'var(--citations-yellow)',
-            width: `${(currentTime / episode.duration) * 100}%`
+            transform: `scaleX(${currentTime / episode.duration})`
           }} 
         />
         {episode.content.map((content, index) => {
-          const xPosition = (content.startTime / episode.duration) * 100
-          return (<Gap key={index} style={{left: `${xPosition}%`}} />)
+          return (
+            <Gap 
+              key={index} 
+              style={{
+                transform: `translateX(${(content.startTime / episode.duration) * timelineRect.width}px)`
+              }} 
+            />
+          )
         })}
         <Playhead
-          style={{left: `${(currentTime / episode.duration) * 100}%`}}
+          style={{
+            transform: `translateX(${(currentTime / episode.duration) * timelineRect.width}px)`
+          }}
+          onMouseDown={onSeekStart}
+          ref={playhead}
         />
       </Timeline>
     </Outer>

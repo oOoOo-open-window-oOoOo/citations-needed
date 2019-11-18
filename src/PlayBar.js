@@ -85,6 +85,12 @@ export const DesktopPlayBar = ({title, logoSrc, donationLink, activeEpisode, pla
     playerRef.current.currentTime = playerRef.current.currentTime - 5
   }, [])
 
+  // Seeking
+  const onSeek = useCallback((time) => {
+    setCurrentTime(time)
+    playerRef.current.currentTime = time
+  }, [])
+
   return (
     <Bar>
       <Logo src={logoSrc} />
@@ -106,7 +112,11 @@ export const DesktopPlayBar = ({title, logoSrc, donationLink, activeEpisode, pla
             onError={() => setIsPlaying(false)}
             onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
           />
-          <TimelineArea episode = {activeEpisode} currentTime={currentTime}/>
+          <TimelineArea 
+            episode={activeEpisode} 
+            currentTime={currentTime}
+            onSeek={onSeek}
+          />
           <Controls>
             {!isPlaying && currentTime === 0 ? (
               <button onClick={onPlayButtonClick}>
