@@ -1749,6 +1749,11 @@ array-includes@^3.0.3:
     define-properties "^1.1.2"
     es-abstract "^1.7.0"
 
+array-merge-by-key@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/array-merge-by-key/-/array-merge-by-key-1.0.1.tgz#f5478881dcd0d25a48b598227cb49e709d81224e"
+  integrity sha512-LM2wZCGcDX1Ml56B02PP6vd0uelRyplz7Xx4Kf3JKsJGR4PO1K1G37MwtjzAsBjItaZh1ORFTlhN5qDIk5/R2Q==
+
 array-union@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-1.0.2.tgz#9a34410e4f4e3da23dea375be5be70f24778ec39"

@@ -1,6 +1,7 @@
 const Parser = require('rss-parser')
 const parser = new Parser()
 const fs = require('fs')
+const mergeByKey = require('array-merge-by-key')
 
 // Terminal colors
 const GREEN_COLOR = '\x1b[32m'
@@ -31,8 +32,8 @@ const hmsToSeconds = (string) => {
 
 const about = (feed) => ({
   title: feed.title,
-  // Manual for now
   logo: feed.image.url,
+  // Manual for now
   donationLink: {
     name: 'Support us on Patreon',
     url: 'https://www.patreon.com/citationsneededpodcast'
@@ -59,19 +60,27 @@ const updateContentFromRSS = async (url) => {
     process.exit(1)
   })
   console.log(CYAN_COLOR, `Found ${feed.items.length} episodes.`, RESET_COLOR)
+  
+  const localContent = JSON.parse(fs.readFileSync('./src/content.json', 'utf8'))
+  
+  // Merge RSS with local episodes, giving priority to local ones.
+  // Episodes with the same id are merged.
+  console.log(CYAN_COLOR, `Merging with local content.`, RESET_COLOR)
+  const episodes = mergeByKey('id', feed.items.map(episode), localContent.episodes)
 
-  const content = {
+  const newContent = {
+    ...localContent,
     about: about(feed),
     metadata: {
       description: feed.description,
       image: feed.image.url,
       title: feed.title
     },
-    episodes: feed.items.map(episode)
+    episodes
   }
 
   console.log(CYAN_COLOR, `Updating content file.`, RESET_COLOR)
-  await fs.writeFile('./src/content.json', JSON.stringify(content, null, 2), error => {
+  await fs.writeFile('./src/content.json', JSON.stringify(newContent, null, 2), error => {
     if (error) throw error
   })
   console.log(GREEN_COLOR, 'Done.', RESET_COLOR)
