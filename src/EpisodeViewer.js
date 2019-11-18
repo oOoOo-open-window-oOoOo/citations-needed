@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {stringToDate} from './helpers/date' //imports date helper methods
+import {stringToDate, secondsToNiceDuration} from './helpers/date' //imports date helper methods
 import TextTruncate from 'react-text-truncate'
 
 const Viewer = styled.div`
@@ -100,7 +100,7 @@ export const EpisodeViewer = ({episode}) => {
           <div className="title">
             <h3>{episode.title}</h3>
           </div>
-          <div className="date-runtime"><span>{stringToDate(episode.datePosted).toLocaleDateString()}</span> • <span>{episode.runtime}</span></div>
+          <div className="date-runtime"><span>{stringToDate(episode.datePosted).toLocaleDateString()}</span> • <span>{secondsToNiceDuration(episode.duration)}</span></div>
           {episode.contentWarning &&
             <div className="content-warning">content warning: {episode.contentWarning}</div>
           }
