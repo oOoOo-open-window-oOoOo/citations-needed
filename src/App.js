@@ -1,12 +1,10 @@
 import React, {useState} from 'react'
 //import styled from 'styled-components'
-import content from './content'
+import content from './content.json'
 import { EpisodeList } from './EpisodeList'
 import { EpisodeViewer } from './EpisodeViewer'
 import { DesktopPlayBar } from './PlayBar'
 import './App.css'
-
-content.episodes = [...content.episodes]
 
 function App() {
   const [activeEpisode, setActiveEpisode] = useState(content.episodes[0]);
