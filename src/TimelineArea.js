@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef } from 'react'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import { useEvent, useMount } from 'react-use'
 
 const Outer = styled.div`
@@ -45,6 +45,12 @@ const Timeline = styled.div`
   margin-top: 10px;
 `
 
+const GlobalCursorStyle = createGlobalStyle`
+  body {
+    cursor: ${props => (props.isSeeking ? 'grabbing !important' : 'initial')};
+  }
+`
+
 const TimelineArea = ({episode, currentTime, onSeek}) => {
   const [isSeeking, setIsSeeking] = useState(false)
 
@@ -71,7 +77,7 @@ const TimelineArea = ({episode, currentTime, onSeek}) => {
   const onSeekStart = useCallback(() => {
     setIsSeeking(true)
   }, [])
-
+  
   const onSeekEnd = useCallback(() => {
     setIsSeeking(false)
   }, [])
@@ -79,6 +85,7 @@ const TimelineArea = ({episode, currentTime, onSeek}) => {
 
   return (
     <Outer>
+      <GlobalCursorStyle isSeeking={isSeeking} />
       <h2>{episode.title}</h2>
       <Timeline
         ref={timeline}
@@ -103,7 +110,8 @@ const TimelineArea = ({episode, currentTime, onSeek}) => {
         })}
         <Playhead
           style={{
-            transform: `translateX(${(currentTime / episode.duration) * timelineRect.width}px)`
+            transform: `translateX(${(currentTime / episode.duration) * timelineRect.width}px)`,
+            cursor: isSeeking ? 'grabbing' : 'grab'
           }}
           onMouseDown={onSeekStart}
           ref={playhead}
