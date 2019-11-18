@@ -16,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "update-content": "node scripts/updateContent http://citationsneeded.libsyn.com/rss"
   },
   "eslintConfig": {
     "extends": "react-app"
