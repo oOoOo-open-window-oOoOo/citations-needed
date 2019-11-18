@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react'
+import React, {useCallback, useRef, useState, useEffect} from 'react'
 import styled from 'styled-components'
 import TimelineArea from './TimelineArea'
 
@@ -71,6 +71,20 @@ export const DesktopPlayBar = ({title, logoSrc, donationLink, activeEpisode, pla
     isPlaying ? playerRef.current.pause() : playerRef.current.play()
   }, [isPlaying])
 
+  // If active episode changes, reset player
+  useEffect(() => {
+    setIsPlaying(false)
+    setCurrentTime(0)
+  }, [activeEpisode])
+
+  const skipForward = useCallback(() => {
+    playerRef.current.currentTime = playerRef.current.currentTime + 5
+  }, [])
+
+  const skipBackward = useCallback(() => {
+    playerRef.current.currentTime = playerRef.current.currentTime - 5
+  }, [])
+
   return (
     <Bar>
       <Logo src={logoSrc} />
@@ -100,14 +114,14 @@ export const DesktopPlayBar = ({title, logoSrc, donationLink, activeEpisode, pla
               </button>
             ) : (
               <>
-                <button>
-                  Prev
+                <button onClick={skipBackward}>
+                  -5s
                 </button>
                 <button onClick={onPlayButtonClick}>
                   {isPlaying ? "Pause" : "Play"}
                 </button>
-                <button>
-                  Next
+                <button onClick={skipForward}>
+                  +5s
                 </button>
               </>
             )}
