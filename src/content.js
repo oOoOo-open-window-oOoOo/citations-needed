@@ -27,7 +27,6 @@ export default {
     { // EPISODE
       id: 0,
       soundcloudId: 1234,
-      runtime: "1 hour, 7 minutes",
       duration: 4025.4094,
       datePosted: "2019-12-21T08:00:00.000Z",
       title: 'Episode 84: How Claims of “Sowing Discord” Silence Criticism of Power',
@@ -81,7 +80,6 @@ export default {
     { // EPISODE
       id: 0,
       soundcloudId: 1234,
-      runtime: "1 hour, 7 minutes",
       duration: 4025.4094,
       datePosted: "2019-12-18T08:00:00.000Z",
       title: 'Episode 83: The Unchecked Conservative Ideology of US Media\'s \'Fact-Check\' Verticals',
@@ -134,7 +132,6 @@ export default {
     { // EPISODE
       id: 0,
       soundcloudId: 1234,
-      runtime: "1 hour, 7 minutes",
       duration: 4025.4094,
       datePosted: "2019-12-11T08:00:00.000Z",
       title: 'Episode 81: How US Media Pits Labor and Climate Activists Against One Other',
@@ -188,7 +185,6 @@ export default {
     { // EPISODE
       id: 0,
       soundcloudId: 1234,
-      runtime: "1 hour, 7 minutes",
       duration: 4025.4094,
       datePosted: "2019-12-11T08:00:00.000Z",
       title: 'Episode 82: \'Western Civilization\' and White Supremacy: The Right-Wing Co-option of Antiquity',
@@ -241,7 +237,6 @@ export default {
     { // EPISODE
       id: 0,
       soundcloudId: 1234,
-      runtime: "1 hour, 7 minutes",
       duration: 4025.4094,
       datePosted: "2019-12-11T08:00:00.000Z",
       title: 'Episode 81: Animal Rights as Media and Pop Culture Punchline',

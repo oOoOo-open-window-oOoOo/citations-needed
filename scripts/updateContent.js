@@ -49,7 +49,6 @@ const episode = (ep) => ({
   title: ep.title,
   // Empty properties
   contentWarning: '',
-  runtime: '',
   content: []
 })
 
